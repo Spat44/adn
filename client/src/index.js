@@ -16,7 +16,7 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="/welcome" element={<Welcome />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="/subject" element={<Subject />} />
         <Route path="/subbject-success" element={<SubjectSuccess />} />
         <Route path="/candidates" element={<Candidates />} />
