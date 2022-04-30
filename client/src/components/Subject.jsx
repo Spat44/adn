@@ -3,59 +3,36 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton'
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
 
-const marks = [
-    {
-      value: 0,
-      label: '0',
-    },
-    {
-      value: 10,
-      label: '10',
-    },
-    {
-      value: 20,
-      label: '20',
-    },
-    {
-      value: 30,
-      label: '30',
-    },
-    {
-      value: 40,
-      label: '40',
-    },
-    {
-      value: 50,
-      label: '50',
-    },
-    {
-      value: 60,
-      label: '60',
-    },
-    {
-      value: 70,
-      label: '70',
-    },
-    {
-      value: 80,
-      label: '80',
-    },
-    {
-      value: 90,
-      label: '90',
-    },
-    {
-      value: 100,
-      label: '100',
-    }
-  ];
-
 const Subject = () => {
+
+  const [gender, setGender] = React.useState('');
+  const [age, setAge] = React.useState(30);
+  const [protein, setProtein] = React.useState('');
+
+  function checkAnswers() {
+
+    var jsonData = {
+      "gender": gender,
+      "age": age,
+      "protein": protein
+    };
+  
+    console.log(jsonData);
+  
+    fetch('/check-subject', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(jsonData)
+      })
+  };
+
     return(
         <div>
             <Grid container spacing={2}>
@@ -64,7 +41,6 @@ const Subject = () => {
                     src={process.env.PUBLIC_URL+"obama.jpg"} 
                     alt="Barack Obama"
                     style={{ maxWidth: "100%", maxHeight: "500px" }}
-                    
                 />
               </Grid>
               <Grid item xs={12} sm={2}>
@@ -74,10 +50,15 @@ const Subject = () => {
                             Genre
                         </Typography>
                         <Typography align="center">
-                            <ButtonGroup variant="contained" aria-label="outlined primary button group" style={{ margin: "auto" }}>
-                                <Button>Femme</Button>
-                                <Button>Homme</Button>
-                            </ButtonGroup>
+                            <ToggleButtonGroup 
+                              id="genderSelect"
+                              value={gender} onChange={(event, newGender) => { setGender(newGender) }}
+                              variant="contained" aria-label="outlined primary button group"
+                              exclusive={true}
+                              style={{ margin: "auto" }}>
+                                <ToggleButton value="Femme">Femme</ToggleButton>
+                                <ToggleButton value="Homme">Homme</ToggleButton>
+                            </ToggleButtonGroup>
                         </Typography>
                     </CardContent>
                 </Card>
@@ -91,7 +72,9 @@ const Subject = () => {
                         <Typography align="center">
                             <Slider
                                 aria-label="Always visible"
-                                defaultValue={50}
+                                defaultValue={age}
+                                value={age}
+                                onChange={(event, newAge) => { setAge(newAge) }}
                                 step={1}
                                 min={0}
                                 max={100}
@@ -109,10 +92,10 @@ const Subject = () => {
                             Séquence de protéine
                         </Typography>
                         <Typography align="center" style={{ marginBottom: "15px" }}>
-                            <TextField id="filled-basic" label="MRQH..." variant="filled" />
+                            <TextField id="filled-basic" label="MRQH..." variant="filled" value={protein} onChange={(event) => { setProtein(event.target.value) }} />
                         </Typography>
                         <Typography align="center">
-                            <Button>Vérifier</Button>
+                            <Button onClick={checkAnswers}>Vérifier</Button>
                         </Typography>
                     </CardContent>
                 </Card>
@@ -121,5 +104,52 @@ const Subject = () => {
         </div>
     );
 };
+
+const marks = [
+  {
+    value: 0,
+    label: '0',
+  },
+  {
+    value: 10,
+    label: '10',
+  },
+  {
+    value: 20,
+    label: '20',
+  },
+  {
+    value: 30,
+    label: '30',
+  },
+  {
+    value: 40,
+    label: '40',
+  },
+  {
+    value: 50,
+    label: '50',
+  },
+  {
+    value: 60,
+    label: '60',
+  },
+  {
+    value: 70,
+    label: '70',
+  },
+  {
+    value: 80,
+    label: '80',
+  },
+  {
+    value: 90,
+    label: '90',
+  },
+  {
+    value: 100,
+    label: '100',
+  }
+];
 
 export default Subject;
