@@ -8,8 +8,11 @@ import ToggleButton from '@mui/material/ToggleButton'
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 
 const Subject = () => {
+
+  let navigate = useNavigate();
 
   const [gender, setGender] = React.useState('');
   const [age, setAge] = React.useState(30);
@@ -23,14 +26,20 @@ const Subject = () => {
       "protein": protein
     };
   
-    console.log(jsonData);
-  
     fetch('/check-subject', {
         method: 'POST',
         mode: 'cors',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(jsonData)
-      })
+        body: JSON.stringify(jsonData) })
+      .then((response) => response.json())
+      .then((json) => {
+          if(json.validAnswers) {
+            navigate('/subject-success');
+          } else {
+            //TODO Display error message
+          }
+      });
+
   };
 
     return(

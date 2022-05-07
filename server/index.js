@@ -12,9 +12,9 @@ app.use(bodyParser.urlencoded({
 
 app.post("/check-subject", (req, res) => {
     if(req.body.age == 40 && req.body.gender == "Homme" && req.body.protein == "TRE") {
-      res.json({ message: "C'est un oui!" });
+      res.json({ validAnswers: true });
     } else {
-      res.json({ message: "C'est un non!" });
+      res.json({ validAnswers: false });
     }
   });
 

@@ -18,7 +18,7 @@ render(
       <Route path="/" element={<App />}>
         <Route path="/" element={<Welcome />} />
         <Route path="/subject" element={<Subject />} />
-        <Route path="/subbject-success" element={<SubjectSuccess />} />
+        <Route path="/subject-success" element={<SubjectSuccess />} />
         <Route path="/candidates" element={<Candidates />} />
         <Route
           path="*"
