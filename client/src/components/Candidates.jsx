@@ -1,18 +1,24 @@
 import React from "react";
+import Candidate from "./Candidate";
 
 const Candidates = () => {
+
+    const [data, setData] = React.useState([]);
 
     fetch('/candidates', {
         method: 'GET',
         mode: 'cors'})
       .then((response) => response.json())
-      .then((json) => {
-          console.log(json);
+      .then((candidates) => {
+          setData(candidates);
       });
 
     return(
         <div>
-            <h1>Candidates</h1>
+            {data.map((item) => (
+                <Candidate name={item.name} picture={item.picture}>
+                </Candidate>
+            ))}
         </div>
     );
 };

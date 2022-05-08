@@ -21,9 +21,10 @@ app.post("/check-subject", (req, res) => {
     }
 });
 
-app.get("/candidates", (req, res) => {
+app.get("/candidates", (_, res) => {
   let candidates = require("./candidates.json");
-  res.json(candidates);
+  let basicInfoOnCandidates = candidates.map(({name, picture}) => ({name, picture}))
+  res.json(basicInfoOnCandidates);
 });
 
 app.listen(PORT, () => {

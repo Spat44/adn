@@ -2,7 +2,7 @@ import { Card, CardMedia, CardContent, Typography, ToggleButtonGroup, ToggleButt
 import React from "react";
 import marks from "../utils/marks";
 
-const Candidate = () => {
+const Candidate = (props) => {
 
     const [gender, setGender] = React.useState('');
     const [age, setAge] = React.useState(30);
@@ -15,11 +15,11 @@ const Candidate = () => {
                 component="img"
                 alt=""
                 height="140"
-                image=""
+                image={"http://localhost:3001/" + props.picture}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    Candidate Name
+                    {props.name}
                 </Typography>
                 <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px" }}>
                     Genre
