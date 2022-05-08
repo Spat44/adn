@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Taylor Swift",
+        "picture": "imgs/taylor-swift.jpg",
+        "gender": "female",
+        "birthdate": "",
+        "protein": ["M", "GR", "K", "P"]
+    },
+    {
+        "name": "Taylor Swift",
+        "picture": "imgs/taylor-swift.jpg",
+        "gender": "female",
+        "birthdate": "",
+        "protein": ["M", "GR", "K", "P"]
+    },
+    {
+        "name": "Taylor Swift",
+        "picture": "imgs/taylor-swift.jpg",
+        "gender": "female",
+        "birthdate": "",
+        "protein": ["M", "GR", "K", "P"]
+    },
+    {
+        "name": "Taylor Swift",
+        "picture": "imgs/taylor-swift.jpg",
+        "gender": "female",
+        "birthdate": "",
+        "protein": ["M", "GR", "K", "P"]
+    }
+]
