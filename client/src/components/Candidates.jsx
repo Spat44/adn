@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import React from "react";
 import Candidate from "./Candidate";
 
@@ -14,12 +15,13 @@ const Candidates = () => {
       });
 
     return(
-        <div>
+        <Grid container spacing={2} style={{ padding: "15px" }}>
             {data.map((item) => (
-                <Candidate name={item.name} picture={item.picture}>
-                </Candidate>
+                <Grid item xs={12} sm={3}>
+                    <Candidate id={item.id} name={item.name} picture={item.picture} />
+                </Grid>
             ))}
-        </div>
+        </Grid>
     );
 };
 

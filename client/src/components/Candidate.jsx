@@ -1,4 +1,4 @@
-import { Card, CardMedia, CardContent, Typography, ToggleButtonGroup, ToggleButton, Slider, Collapse } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, ToggleButtonGroup, ToggleButton, Slider, Collapse, Button } from "@mui/material";
 import React from "react";
 import marks from "../utils/marks";
 
@@ -8,6 +8,32 @@ const Candidate = (props) => {
     const [age, setAge] = React.useState(30);
     const [firstExpanded, setFirstExpanded] = React.useState(false);
     const [secondExpanded, setSecondExpanded] = React.useState(false);
+
+    function checkAnswers() {
+
+
+        console.log(props.id)
+        var jsonData = {
+          "gender": gender,
+          "age": age,
+          "id": props.id
+        };
+      
+        fetch('/check-candidate', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(jsonData) })
+          .then((response) => response.json())
+          .then((json) => {
+              if(json.validAnswers) {
+                setFirstExpanded(true)
+              } else {
+                //TODO Display error message
+              }
+          });
+    
+      };
 
     return(
         <Card>
@@ -31,11 +57,11 @@ const Candidate = (props) => {
                         variant="contained" aria-label="outlined primary button group"
                         exclusive={true}
                         style={{ margin: "auto" }}>
-                        <ToggleButton value="Femme">Femme</ToggleButton>
-                        <ToggleButton value="Homme">Homme</ToggleButton>
+                        <ToggleButton value="female">Femme</ToggleButton>
+                        <ToggleButton value="male">Homme</ToggleButton>
                     </ToggleButtonGroup>
                 </Typography>
-                <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px" }}>
+                <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px", marginTop: "15px" }}>
                     Âge
                 </Typography>
                 <Typography align="center">
@@ -51,8 +77,10 @@ const Candidate = (props) => {
                         valueLabelDisplay="on"
                     />
                 </Typography>
+                <Typography align="center">
+                    <Button onClick={checkAnswers}>GO !</Button>
+                </Typography>
             </CardContent>
-
             <Collapse in={firstExpanded} timeout="auto" unmountOnExit>
                 <Typography gutterBottom variant="h5" component="div">
                     First expand!
