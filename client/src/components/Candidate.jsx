@@ -1,18 +1,19 @@
-import { Card, CardMedia, CardContent, Typography, ToggleButtonGroup, ToggleButton, Slider, Collapse, Button } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, ToggleButtonGroup, ToggleButton, Slider, Collapse, Button, TextField } from "@mui/material";
 import React from "react";
 import marks from "../utils/marks";
+import GaugeChart from "react-gauge-chart";
 
 const Candidate = (props) => {
 
     const [gender, setGender] = React.useState('');
     const [age, setAge] = React.useState(30);
+    const [mismatch, setMismatch] = React.useState(0);
+    const [gaugePercent, setPercent] = React.useState(0);
     const [firstExpanded, setFirstExpanded] = React.useState(false);
     const [secondExpanded, setSecondExpanded] = React.useState(false);
 
     function checkAnswers() {
 
-
-        console.log(props.id)
         var jsonData = {
           "gender": gender,
           "age": age,
@@ -27,13 +28,22 @@ const Candidate = (props) => {
           .then((response) => response.json())
           .then((json) => {
               if(json.validAnswers) {
-                setFirstExpanded(true)
+                setFirstExpanded(true);
               } else {
+                setFirstExpanded(false);
                 //TODO Display error message
               }
           });
     
       };
+
+    function checkMismatchs() {
+        let valid = mismatch === props.protein.filter(it => !it.match).length;
+        let percent = props.protein.filter(it => it.match).length / props.protein.length
+        console.log(percent);
+        setPercent(percent);
+        setSecondExpanded(valid);
+    }
 
     return(
         <Card>
@@ -82,14 +92,40 @@ const Candidate = (props) => {
                 </Typography>
             </CardContent>
             <Collapse in={firstExpanded} timeout="auto" unmountOnExit>
+                <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px", marginTop: "15px" }}>
+                    Séquence
+                </Typography>
+                <Typography gutterBottom variant="h5" component="div" style={{display: "flex"}}>
+                    {props.protein.map((prot) => {
+                        return prot.match ?
+                            <p style={{color: "green", marginLeft: "4px"}}>{prot.value}</p>
+                        :
+                            <p style={{color: "red", marginLeft: "4px"}}>{prot.value}</p>
+                    })}
+                </Typography>
+                <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px", marginTop: "15px" }}>
+                    Nombre de mismatchs
+                </Typography>
                 <Typography gutterBottom variant="h5" component="div">
-                    First expand!
+                <TextField
+                    id="outlined-number"
+                    label="Nombre"
+                    type="number"
+                    value={mismatch}
+                    onChange={(event) => { setMismatch(parseInt(event.target.value)) }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                </Typography>
+                <Typography align="center">
+                    <Button onClick={checkMismatchs}>GO !</Button>
                 </Typography>
             </Collapse>
 
             <Collapse in={secondExpanded} timeout="auto" unmountOnExit>
                 <Typography gutterBottom variant="h5" component="div">
-                    Second expand!
+                    <GaugeChart id="gauge" percent={gaugePercent} />
                 </Typography>
             </Collapse>
         </Card>

@@ -23,7 +23,7 @@ app.post("/check-subject", (req, res) => {
 
 app.get("/candidates", (_, res) => {
   let candidates = require("./candidates.json");
-  let basicInfoOnCandidates = candidates.map(({id, name, picture}) => ({id, name, picture}))
+  let basicInfoOnCandidates = candidates.map(({id, name, picture, protein}) => ({id, name, picture, protein}))
   res.json(basicInfoOnCandidates);
 });
 
