@@ -9,6 +9,7 @@ import Welcome from './components/Welcome';
 import Subject from './components/Subject';
 import SubjectSuccess from './components/SubjectSuccess';
 import Candidates from './components/Candidates';
+import FinalAnswer from './components/FinalAnswer';
 
 
 const rootElement = document.getElementById("root");
@@ -20,6 +21,7 @@ render(
         <Route path="/subject" element={<Subject />} />
         <Route path="/subject-success" element={<SubjectSuccess />} />
         <Route path="/candidates" element={<Candidates />} />
+        <Route path="/final-answer" element={<FinalAnswer />} />
         <Route
           path="*"
           element={

@@ -35,6 +35,18 @@ app.post("/check-candidate", (req, res) => {
   res.json({ validAnswers: valid })
 });
 
+app.post("/final-answer", (req, res) => {
+  let candidates = require("./candidates.json");
+  let sortedCandidates = candidates.sort(function(a, b) {
+    return b.protein.filter(it => it.match).length - a.protein.filter(it => it.match).length
+  });
+  let valid = false;
+  if(sortedCandidates[0].name.toLowerCase() == req.body.name.toLowerCase()){
+    valid = true;
+  }
+  res.json({ validAnswers: valid })
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

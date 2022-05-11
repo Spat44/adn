@@ -39,10 +39,12 @@ const Candidate = (props) => {
 
     function checkMismatchs() {
         let valid = mismatch === props.protein.filter(it => !it.match).length;
-        let percent = props.protein.filter(it => it.match).length / props.protein.length
-        console.log(percent);
+        let percent = props.protein.filter(it => it.match).length / props.protein.length;
         setPercent(percent);
         setSecondExpanded(valid);
+        if(valid) {
+            props.onCandidateValidated();
+        }
     }
 
     return(
@@ -95,7 +97,7 @@ const Candidate = (props) => {
                 <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px", marginTop: "15px" }}>
                     Séquence
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div" style={{display: "flex"}}>
+                <Typography gutterBottom variant="h5" component="div" style={{display: "flex", justifyContent: "center"}}>
                     {props.protein.map((prot) => {
                         return prot.match ?
                             <p style={{color: "green", marginLeft: "4px"}}>{prot.value}</p>
@@ -106,17 +108,17 @@ const Candidate = (props) => {
                 <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px", marginTop: "15px" }}>
                     Nombre de mismatchs
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                <TextField
-                    id="outlined-number"
-                    label="Nombre"
-                    type="number"
-                    value={mismatch}
-                    onChange={(event) => { setMismatch(parseInt(event.target.value)) }}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
+                <Typography gutterBottom variant="h5" component="div" align="center">
+                    <TextField
+                        id="outlined-number"
+                        label="Nombre"
+                        type="number"
+                        value={mismatch}
+                        onChange={(event) => { setMismatch(parseInt(event.target.value)) }}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
                 </Typography>
                 <Typography align="center">
                     <Button onClick={checkMismatchs}>GO !</Button>
@@ -125,7 +127,7 @@ const Candidate = (props) => {
 
             <Collapse in={secondExpanded} timeout="auto" unmountOnExit>
                 <Typography gutterBottom variant="h5" component="div">
-                    <GaugeChart id="gauge" percent={gaugePercent} />
+                    <GaugeChart id="gauge" percent={gaugePercent} colors={['#EA4228', '#F5CD19', '#5BE12C']} textColor="#000000" />
                 </Typography>
             </Collapse>
         </Card>
