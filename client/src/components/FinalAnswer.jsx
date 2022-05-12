@@ -47,7 +47,7 @@ const FinalAnswer = () => {
                         Vérifiez donc bien l'orthographe.
                     </Typography>
                     <Typography component="h2" variant="h5" style={{ textAlign: "center", marginBottom: "15px" }}>
-                        <TextField id="outlined-basic" label="Entrez le nom" variant="outlined" value={name} onChange={setName} />
+                        <TextField id="outlined-basic" label="Entrez le nom" variant="outlined" value={name} onChange={(event) => { setName(event.target.value) }} />
                     </Typography>
                     <Typography style={{ textAlign: "center", marginBottom: "15px" }}>
                         <Button  variant="contained" onClick={checkName}>Vérifier</Button>

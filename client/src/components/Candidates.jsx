@@ -27,8 +27,10 @@ const Candidates = () => {
     }
 
     function checkValidAnswers() {
-        if(data.length === validAnswers) {
-            navigate('/final-answer');
+        if(data.length - 1 === validAnswers) {
+            setTimeout(function () {
+                navigate('/final-answer');
+            }, 5000);
         }
     }
 

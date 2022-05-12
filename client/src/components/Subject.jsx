@@ -8,6 +8,7 @@ import ToggleButton from '@mui/material/ToggleButton'
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
+import Snackbar from "@mui/material/Snackbar";
 import { useNavigate } from "react-router-dom";
 import marks from "../utils/marks";
 
@@ -15,9 +16,21 @@ const Subject = () => {
 
   let navigate = useNavigate();
 
+  const [subjectPicture, setSubjectPicture] = React.useState("");
   const [gender, setGender] = React.useState('');
   const [age, setAge] = React.useState(30);
   const [protein, setProtein] = React.useState('');
+  const [error, setError] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('/subject-picture', {
+        method: 'GET',
+        mode: 'cors'})
+      .then((response) => response.json())
+      .then((picture) => {
+        setSubjectPicture(picture);
+      });
+  }, []);
 
   function checkAnswers() {
 
@@ -37,19 +50,22 @@ const Subject = () => {
           if(json.validAnswers) {
             navigate('/subject-success');
           } else {
-            //TODO Display error message
+            setError(true);
           }
       });
-
   };
+
+  function handleClose() {
+    setError(false);
+  }
 
     return(
         <div>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={2}>
                 <img 
-                    src={process.env.PUBLIC_URL+"obama.jpg"} 
-                    alt="Barack Obama"
+                    src={"http://localhost:3001/" + subjectPicture} 
+                    alt="Subject to save"
                     style={{ maxWidth: "100%", maxHeight: "500px" }}
                 />
               </Grid>
@@ -66,8 +82,8 @@ const Subject = () => {
                               variant="contained" aria-label="outlined primary button group"
                               exclusive={true}
                               style={{ margin: "auto" }}>
-                                <ToggleButton value="Femme">Femme</ToggleButton>
-                                <ToggleButton value="Homme">Homme</ToggleButton>
+                                <ToggleButton value="female">Femme</ToggleButton>
+                                <ToggleButton value="male">Homme</ToggleButton>
                             </ToggleButtonGroup>
                         </Typography>
                     </CardContent>
@@ -111,6 +127,12 @@ const Subject = () => {
                 </Card>
               </Grid>
             </Grid>
+            <Snackbar
+              open={error}
+              autoHideDuration={5000}
+              onClose={handleClose}
+              message="Faux! Vérifiez vos réponses."
+            />
         </div>
     );
 };

@@ -4,7 +4,7 @@
         "name": "Taylor Swift",
         "picture": "imgs/taylor-swift.jpg",
         "gender": "female",
-        "birthdate": "10/31/1994",
+        "birthdate": "12/13/1989",
         "protein": [
             {
                 "match": false,
@@ -26,60 +26,60 @@
     },
     {
         "id": 2,
-        "name": "Taylor Swift",
-        "picture": "imgs/taylor-swift.jpg",
-        "gender": "female",
-        "birthdate": "10/31/1994",
+        "name": "Omar Sy",
+        "picture": "imgs/omar-sy.jpg",
+        "gender": "male",
+        "birthdate": "01/20/1978",
         "protein": [
             {
                 "match": true,
-                "value": "M"
-            },
-            {
-                "match": true,
-                "value": "GR"
+                "value": "MY"
             },
             {
                 "match": false,
-                "value": "K"
+                "value": "WI"
             },
             {
                 "match": true,
-                "value": "P"
+                "value": "L"
             }
         ]
     },
     {
         "id": 3,
-        "name": "Taylor Swift",
-        "picture": "imgs/taylor-swift.jpg",
+        "name": "Rihanna",
+        "picture": "imgs/rihanna.jpg",
         "gender": "female",
-        "birthdate": "10/31/1994",
+        "birthdate": "02/20/1988",
         "protein": [
             {
-                "match": false,
+                "match": true,
                 "value": "M"
             },
             {
-                "match": false,
-                "value": "GR"
+                "match": true,
+                "value": "Y"
             },
             {
-                "match": false,
+                "match": true,
+                "value": "H"
+            },
+            {
+                "match": true,
                 "value": "K"
             },
             {
-                "match": false,
-                "value": "P"
+                "match": true,
+                "value": "L"
             }
         ]
     },
     {
         "id": 4,
-        "name": "Taylor Swift",
-        "picture": "imgs/taylor-swift.jpg",
-        "gender": "female",
-        "birthdate": "10/31/1994",
+        "name": "Antoine Griezmann",
+        "picture": "imgs/antoine-griezmann.jpg",
+        "gender": "male",
+        "birthdate": "03/21/1991",
         "protein": [
             {
                 "match": true,

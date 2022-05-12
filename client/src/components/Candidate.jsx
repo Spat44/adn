@@ -1,4 +1,4 @@
-import { Card, CardMedia, CardContent, Typography, ToggleButtonGroup, ToggleButton, Slider, Collapse, Button, TextField } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, ToggleButtonGroup, ToggleButton, Slider, Collapse, Button, TextField, Snackbar } from "@mui/material";
 import React from "react";
 import marks from "../utils/marks";
 import GaugeChart from "react-gauge-chart";
@@ -11,6 +11,7 @@ const Candidate = (props) => {
     const [gaugePercent, setPercent] = React.useState(0);
     const [firstExpanded, setFirstExpanded] = React.useState(false);
     const [secondExpanded, setSecondExpanded] = React.useState(false);
+    const [error, setError] = React.useState(false);
 
     function checkAnswers() {
 
@@ -31,7 +32,7 @@ const Candidate = (props) => {
                 setFirstExpanded(true);
               } else {
                 setFirstExpanded(false);
-                //TODO Display error message
+                setError(true);
               }
           });
     
@@ -44,7 +45,13 @@ const Candidate = (props) => {
         setSecondExpanded(valid);
         if(valid) {
             props.onCandidateValidated();
+        } else {
+            setError(true);
         }
+    }
+
+    function handleClose() {
+        setError(false);
     }
 
     return(
@@ -130,6 +137,12 @@ const Candidate = (props) => {
                     <GaugeChart id="gauge" percent={gaugePercent} colors={['#EA4228', '#F5CD19', '#5BE12C']} textColor="#000000" />
                 </Typography>
             </Collapse>
+            <Snackbar
+              open={error}
+              autoHideDuration={5000}
+              onClose={handleClose}
+              message="Faux! Vérifiez vos réponses."
+            />
         </Card>
     );
 }

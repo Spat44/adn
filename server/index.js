@@ -13,8 +13,14 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get("/subject-picture", (_, res) => {
+  let subject = require("./subject.json");
+  res.json(subject.picture);
+});
+
 app.post("/check-subject", (req, res) => {
-    if(req.body.age == 40 && req.body.gender == "Homme" && req.body.protein == "TRE") {
+  let subject = require("./subject.json");
+    if(req.body.age == getAge(subject.birthdate) && req.body.gender == subject.gender && req.body.protein == subject.protein) {
       res.json({ validAnswers: true });
     } else {
       res.json({ validAnswers: false });
