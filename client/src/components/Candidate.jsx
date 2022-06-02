@@ -60,7 +60,7 @@ const Candidate = (props) => {
                 component="img"
                 alt=""
                 height="140"
-                image={"http://localhost:3001/" + props.picture}
+                image={props.picture}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
