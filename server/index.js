@@ -13,6 +13,11 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.get("/subject-picture", (_, res) => {
   let subject = require("./subject.json");
   res.json(subject.picture);
