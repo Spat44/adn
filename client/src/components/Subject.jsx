@@ -64,7 +64,7 @@ const Subject = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={2}>
                 <img 
-                    src={"http://localhost:3001/" + subjectPicture} 
+                    src={subjectPicture} 
                     alt="Subject to save"
                     style={{ maxWidth: "100%", maxHeight: "500px" }}
                 />
