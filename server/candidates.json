@@ -1,10 +1,10 @@
 [
     {
         "id": 1,
-        "name": "Taylor Swift",
-        "picture": "imgs/taylor-swift.jpg",
+        "name": "DR émilia caubert",
+        "picture": "imgs/emilie.png",
         "gender": "female",
-        "birthdate": "12/13/1989",
+        "birthdate": "12/13/1946",
         "protein": [
             {
                 "match": false,
@@ -26,10 +26,10 @@
     },
     {
         "id": 2,
-        "name": "Omar Sy",
-        "picture": "imgs/omar-sy.jpg",
+        "name": "Léon Patounec",
+        "picture": "imgs/leon.png",
         "gender": "male",
-        "birthdate": "01/20/1978",
+        "birthdate": "01/20/2000",
         "protein": [
             {
                 "match": true,
@@ -40,17 +40,17 @@
                 "value": "WI"
             },
             {
-                "match": true,
-                "value": "L"
+                "match": false,
+                "value": "T"
             }
         ]
     },
     {
         "id": 3,
-        "name": "Rihanna",
-        "picture": "imgs/rihanna.jpg",
+        "name": "Dr Maya Curado",
+        "picture": "imgs/maya.jpg",
         "gender": "female",
-        "birthdate": "02/20/1988",
+        "birthdate": "02/20/1989",
         "protein": [
             {
                 "match": true,
@@ -76,8 +76,8 @@
     },
     {
         "id": 4,
-        "name": "Antoine Griezmann",
-        "picture": "imgs/antoine-griezmann.jpg",
+        "name": "Tomas Parcker",
+        "picture": "imgs/thomas.jpg",
         "gender": "male",
         "birthdate": "03/21/1991",
         "protein": [
